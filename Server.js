@@ -9,7 +9,7 @@ app.use(cors())
 app.use(express.json())
 app.use('/',userRoutes)
 const PORT = process.env.PORT
-app.listen(PORT,()=>{
+app.listen(PORT || 5000,()=>{
     console.log("App is listening on PORT :",PORT);
 })
 
