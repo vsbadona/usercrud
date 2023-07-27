@@ -35,18 +35,33 @@ if(checkPassword){
 
 export const forgotPassword = async(req,res) => {
     const {email,phone}=req.body
-    const findUser = await User.findOne({email:email})
-    if(findUser){
-const checkPhone = await findUser.phone === phone
-if(checkPhone){
-    const token = await findUser._id
-    findUser.token = token
-    await findUser.save()
-    res.json({token:token})
-}
+//     const findUser =  User.findOne({ email }, (err, user) => {
+//         if (err) {
+//           console.error('Error finding user:', err);
+//           res.status(500).send('Error finding user');
+//         } else {
+//     if(findUser){
+// const checkPhone = await findUser.phone === phone
+// if(checkPhone){
+//     const token = await findUser._id
+//     findUser.token = token
+//     await findUser.save()
+//     res.json({token:token})
+// }
+//     }else{
+//         res.json({alert:"Incorrect Entries"})
+//     }})
+const findUser = await User.findOne({email})
+if(findUser){
+    const checkPassword = findUser.phone == phone
+    if(checkPassword){
+        findUser.token = findUser._id
+     await   findUser.save()
+        res.json({token:findUser._id})
     }else{
-        res.json({alert:"Incorrect Entries"})
+        res.json({alert:"Invalid Entries!"})
     }
+}
 }
 export const updatePassword = async(req,res) => {
     const {token,password}=req.body
