@@ -83,7 +83,7 @@ export const updateProfile = async(req,res) => {
      if(findUser){
         findUser.name = name
       findUser.image = image
-            findUser.save()
+           await findUser.save()
         res.json({success : "Profile updated" , user:findUser})
         }else{
         res.json({error : "Can't update profile"})
