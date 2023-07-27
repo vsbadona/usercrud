@@ -93,7 +93,7 @@ export const updateProfile = async(req,res) => {
     }
 
     export const deleteUser = async(req,res) => {
-        const {_id} = req.body
+        const {_id} = req.query
         const user = await User.findByIdAndDelete(_id)
         if(user){
             res.json({success : "User deleted"})
