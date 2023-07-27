@@ -76,7 +76,7 @@ export const updateProfile = async(req,res) => {
     if(!_id){
         res.json({alert : "Please login to contiue"})
     }else{
-        if(!name && !email && !phone){
+        if(!name && !image){
             res.json({alert : "Please add something to update"})
         }else{
          const findUser = await User.findById(_id)
