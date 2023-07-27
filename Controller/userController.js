@@ -72,7 +72,7 @@ export const getUser = async(req,res) => {
 }
 
 export const updateProfile = async(req,res) => {
-    const {_id,name,email,phone} = req.body
+    const {_id,name,image} = req.body
     if(!_id){
         res.json({alert : "Please login to contiue"})
     }else{
@@ -82,8 +82,7 @@ export const updateProfile = async(req,res) => {
          const findUser = await User.findById(_id)
      if(findUser){
         findUser.name = name
-         findUser.email = email
-       findUser.phone = phone
+      findUser.image = image
             findUser.save()
         res.json({success : "Profile updated" , user:findUser})
         }else{
